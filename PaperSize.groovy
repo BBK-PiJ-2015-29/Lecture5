@@ -106,7 +106,8 @@ PSize smallerPaper(int value, PSize basic) {
 		temp = smallerPaper(value - 1, basic);
 		
 		if (temp.getWidth() > temp.getLength()) {
-			temp.setWidth(temp.getWidth() / 2);
+			int newWidth = (int) (temp.getWidth() /2);
+			temp.setWidth(newWidth);
 			return temp;
 		}
 		else {
