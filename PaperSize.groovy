@@ -58,10 +58,28 @@ while (!validInput) {
 //Remove the A
 String trimmed = input.substring(1, input.length());
 
-int value = Integer.parseInt(trimmed);
+PSize newSize = new PSize();
+newSize = newPaper(trimmed, a0);
 
-if (value == 0) {
-
+PSize newPaper(String trimmed, PSize a) {
+	PSize temp = new PSize();
+	temp.setWidth(0);
+	temp.setLength(0);
+	temp.setArea();
+	
+	int value = Integer.parseInt(trimmed);
+	if (value == 0) {
+		if (trimmed.length() == 1) {
+			return a;
+		}
+		else {
+			
+		}
+	}
+	else {
+		//insert code for smaller than A0
+	}
 }
 
-System.out.println(a0.area);
+
+System.out.println();
