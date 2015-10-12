@@ -47,7 +47,7 @@ while (!validInput) {
 	System.out.print("> ");
 	input = System.console().readLine();
 
-	if (input.charAt(0) != 'A') {
+	if (input.charAt(0).toUpperCase() != 'A') {
 		System.out.println("Not a valid input");
 	}
 	else{
@@ -62,16 +62,19 @@ PSize newSize = new PSize();
 newSize = newPaper(trimmed, a0);
 newSize.setArea();
 int newArea = newSize.getArea();
+double newAreaDouble = (double) newArea;
+double metreArea = newAreaDouble / (1000000);
 
 PSize newPaper(String trimmed, PSize basic) {
 	int value = Integer.parseInt(trimmed);
 	int length = trimmed.length();
+	PSize temp = new PSize();
 	if (value == 0) {
-		PSize temp = new PSize();
+		
 		temp = biggerPaper(length, basic); 
 	}
 	else {
-		//call smaller method
+		temp = smallerPaper(value, basic);
 	}
 }
 
@@ -81,8 +84,7 @@ PSize biggerPaper(int length, PSize basic) {
 	}
 	else {
 		PSize temp = new PSize();
-		temp.setWidth(biggerPaper().getWidth);
-		temp.setLength(biggerPaper().getLength);
+		temp = biggerPaper(length-1, basic);
 		
 		if (temp.getWidth() < temp.getLength())	{
 			temp.setWidth(temp.getWidth() * 2);
@@ -95,4 +97,24 @@ PSize biggerPaper(int length, PSize basic) {
 	}
 }
 
-System.out.println(newArea);
+PSize smallerPaper(int value, PSize basic) {
+	if (value == 0) {
+		return basic;
+	}
+	else {
+		PSize temp = new PSize();
+		temp = smallerPaper(value - 1, basic);
+		
+		if (temp.getWidth() > temp.getLength()) {
+			temp.setWidth(temp.getWidth() / 2);
+			return temp;
+		}
+		else {
+		    int newLength = (int) (temp.getLength() / 2);
+			temp.setLength(newLength);
+			return temp;
+		}
+	}
+}
+
+System.out.println("Area of paper size " + input + " is " + metreArea + "sq metres");
